@@ -11,6 +11,7 @@ using namespace std;
 // function prototype
 void fun1();
 void fun2();
+void fun3();
 //main function
 int main() {
 	fun1();
@@ -46,4 +47,16 @@ void fun2() {
 	}
 
 	outFile.close();
+}
+
+// reading from file
+void fun3() {
+	ifstream inFile("fun2.txt");
+	string str;
+	while (getline(inFile, str))
+	{
+		cout << str << " ";
+	}
+	
+	cout << endl;
 }

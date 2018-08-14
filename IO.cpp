@@ -19,7 +19,6 @@ int main() {
 	fun2();
 	fun3();
 	fun4();
-	system("pause");
 	return 0;
 }
 

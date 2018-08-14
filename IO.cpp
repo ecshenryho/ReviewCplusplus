@@ -12,10 +12,13 @@ using namespace std;
 void fun1();
 void fun2();
 void fun3();
+void fun4();
 //main function
 int main() {
 	fun1();
 	fun2();
+	fun3();
+	fun4();
 	system("pause");
 	return 0;
 }
@@ -59,4 +62,29 @@ void fun3() {
 	}
 	
 	cout << endl;
+}
+
+//read a write a file through an fstream objec
+void fun4() {
+	string word;
+	fstream inOutFile("fun4.txt");
+	if (inOutFile.fail())
+	{
+		cout << "The file was not found." << endl;
+	}
+	//read from file
+	else
+	{
+		while (inOutFile>>word)
+		{
+			cout << word << " " ;
+		}
+	}
+	cout << endl;
+	//clear end of file flag to allow additional file operation
+	inOutFile.clear();
+
+	//write to file
+	inOutFile << "This line is added to the file." << endl;
+	inOutFile.close();
 }

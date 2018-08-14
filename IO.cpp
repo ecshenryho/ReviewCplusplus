@@ -64,7 +64,7 @@ void fun3() {
 	cout << endl;
 }
 
-//read a write a file through an fstream objec
+//read a write a file through an fstream object
 void fun4() {
 	string word;
 	fstream inOutFile("fun4.txt");

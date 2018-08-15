@@ -1,20 +1,50 @@
 #include<iostream>
 #include<string>
-#include<sstream>
+#include<fstream>
+#include<cctype>
 using namespace std;
 
 int main() {
-	string str;
-	double price = 0;
-	int quantity = 0;
+	string fileName;
+	fstream inFile, outFile;
+	char ch;
+	int number;
 
-	cout << "Enter the price: ";
-	getline(cin, str);
-	stringstream(str) >> price;
-	cout << "Enter the quantity: ";
-	getline(cin, str);
-	stringstream(str) >> quantity;
-	cout << "The total pice is: " << price * quantity << endl;
-	system("pause");
+	cout << "Enter the file name: ";
+	cin >> fileName;
+ 	//open file for input
+	inFile.open(fileName.c_str(), ios::in);
+	if (inFile.fail())
+	{
+		cout << "could not open input file.\n";
+		return 1;
+	}
+ 	//open file for output
+	outFile.open("modified.txt", ios::out);
+	if (outFile.fail())
+	{
+		cout << "Could not open the output file.\n";
+		return 2;
+	}
+ 	ch = inFile.peek();
+	while (ch != EOF)
+	{
+		cout << "Inside while loop\n";
+		//if it is a digit, increment by 1
+		if (isdigit(ch))
+		{
+			inFile >> number;
+			outFile << number + 1;
+		}
+		//else just read and write to the file
+		else
+		{
+			ch = inFile.get();
+			outFile << ch;
+		}
+ 		ch = inFile.peek();
+	}
+ 	inFile.close();
+	outFile.close();
 	return 0;
 }

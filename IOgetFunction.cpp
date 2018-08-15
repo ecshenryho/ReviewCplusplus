@@ -1,29 +1,52 @@
 #include<iostream>
 #include<string>
 #include<fstream>
+#include<cctype>
+using namespace std;
 
 int main() {
-	std::string fileName;
-	std::fstream file;
+	string fileName;
+	fstream inFile, outFile;
 	char ch;
-
-	std::cout << "Enter a file name: ";
-	std::cin >> fileName;
-	//open the file in ios::in mode
-	file.open(fileName.c_str(), std::ios::in);
-	if (!file)
+	cout << "Enter the file name: ";
+	cin >> fileName;
+	//open file for input
+	inFile.open(fileName.c_str(), ios::in);
+	if (!inFile)
 	{
-		std::cout << "Could not open the file.";
+		cout << "could not open input file.\n";
 		return 1;
 	}
-	//get a single ch from the file
-	ch = file.get();
-	while (ch!=EOF)
+	//open file for output
+	outFile.open("modified.txt", ios::out);
+	if (!outFile)
 	{
-		std::cout << ch;
-		ch = file.get();
+		cout << "Could not open the output file.\n";
+		return 2;
 	}
-	//close the file
-	file.close();
+
+	ch = inFile.peek();
+	while (ch != EOF)
+	{
+		cout << "Inside while loop\n";
+		//if it is a digit, increment by 1
+		if (isdigit(ch))
+		{
+			int number;
+			inFile >> number;
+			outFile << number + 1;
+		}
+		//else just read and write to the file
+		else
+		{
+			ch = inFile.get();
+			outFile << ch;
+		}
+
+		ch = inFile.peek();
+	}
+
+	inFile.close();
+	outFile.close();
 	return 0;
 }

@@ -47,7 +47,7 @@ Overload& Overload::operator=(Overload &&obj) {
 
 	cout << "Move assignment called.\n";
 	if (this!=&obj)
-	{
+	{	//called function form algorithm
 		swap(_size, obj._size);
 		swap(_ptr, obj._ptr);
 	}

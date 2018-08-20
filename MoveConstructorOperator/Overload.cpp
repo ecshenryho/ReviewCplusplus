@@ -17,6 +17,7 @@ Overload::Overload(int size, int value) {
 
 Overload& Overload::operator=(const Overload& obj) {
 	cout << "Assignment operator called.\n";
+	//check to avoid self-assignment object
 	if (this!=&obj)
 	{
 		if (_size>0)
